@@ -4,12 +4,24 @@
 \alias{print_section}
 \title{Print position section}
 \usage{
-print_section(cv, section_id)
+print_section(
+  cv,
+  section_id,
+  title = section_id,
+  icon = "graduation-cap",
+  aside_text = NULL
+)
 }
 \arguments{
 \item{cv}{object of class `cv_printer` created by \code{\link{new_cv_printer}}}
 
 \item{section_id}{Name of section to be printed as encoded by the column `section` in positions dataframe.}
+
+\item{title}{Name to be printing at top of section. Defaults to `section_id` value.}
+
+\item{icon}{Name of font-awesome icon to be used for section.}
+
+\item{aside_text}{Name of label for aside text as stored in the `text_blocks` section of cv data. Leave as `NULL` to ommit.}
 }
 \value{
 

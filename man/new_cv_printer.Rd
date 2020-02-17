@@ -4,13 +4,20 @@
 \alias{new_cv_printer}
 \title{Setup CV printer object}
 \usage{
-new_cv_printer(cv_data, pdf_mode = TRUE)
+new_cv_printer(
+  cv_data,
+  pdf_mode = TRUE,
+ 
+    position_template = "\\n                            ### {title}\\n                            \\n\\n\\n                            {loc}\\n                            \\n\\n\\n                            {institution}\\n                            \\n\\n\\n                            {timeline}\\n                            \\n\\n\\n                            \\n\\n\\n                            {description_bullets}\\n                            \\n\\n "
+)
 }
 \arguments{
 \item{cv_data}{List of dataframes containging info for CV}
 
 \item{pdf_mode}{Boolean of if document is being exported as pdf and thus
 links should be stripped for placement at end.}
+
+\item{position_template}{Glue tempate string that is used to build each position entry.}
 }
 \value{
 

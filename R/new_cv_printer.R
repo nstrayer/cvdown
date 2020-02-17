@@ -3,6 +3,7 @@
 #' @param cv_data List of dataframes containging info for CV
 #' @param pdf_mode Boolean of if document is being exported as pdf and thus
 #'   links should be stripped for placement at end.
+#' @param position_template Glue tempate string that is used to build each position entry.
 #'
 #' @return
 #' @export
@@ -24,12 +25,26 @@
 #' # Print contact info
 #' printer <- printer %>% print_contact_info()
 #'
-new_cv_printer <- function(cv_data, pdf_mode = TRUE){
+new_cv_printer <- function(cv_data,
+                           pdf_mode = TRUE,
+                           position_template =  "
+                            ### {title}
+                            \n\n
+                            {loc}
+                            \n\n
+                            {institution}
+                            \n\n
+                            {timeline}
+                            \n\n
+                            \n\n
+                            {description_bullets}
+                            \n\n\ "){
 
   structure(
     cv_data,
     links = c(),
     pdf = pdf_mode,
+    position_template = position_template,
     class = 'cv_printer'
   )
 }

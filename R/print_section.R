@@ -106,19 +106,7 @@ print_section.cv_printer <- function(cv, section_id, title = section_id, icon = 
       x
     } %>%
     dplyr::mutate_all(~ifelse(is.na(.), 'N/A', .)) %>%
-    glue::glue_data(
-      "### {title}",
-      "\n\n",
-      "{loc}",
-      "\n\n",
-      "{institution}",
-      "\n\n",
-      "{timeline}",
-      "\n\n",
-      "\n\n",
-      "{description_bullets}",
-      "\n\n\n"
-    ) %>%
+    glue::glue_data(attr(cv, 'position_template')) %>%
     cat(sep = "")
 
   cv
