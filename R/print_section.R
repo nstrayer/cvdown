@@ -20,38 +20,38 @@ print_section.cv_printer <- function(cv, section_id){
   }
 
   data_for_position <- cv$positions %>%
-    filter(section == section_id)
+    dplyr::filter(section == section_id)
 
   if(length(data_for_position) == 0){
     stop(glue::glue("No position data entry found for the section of {section_id}"))
   }
 
   data_for_position %>%
-    arrange(desc(end)) %>%
-    mutate(id = 1:n()) %>%
-    pivot_longer(
-      starts_with('description'),
+    dplyr::arrange(desc(end)) %>%
+    dplyr::mutate(id = dplyr::row_number()) %>%
+    tidyr::pivot_longer(
+      dplyr::starts_with('description'),
       names_to = 'description_num',
       values_to = 'description'
     ) %>%
-    filter(!is.na(description) | description_num == 'description_1') %>%
-    group_by(id) %>%
-    mutate(
+    dplyr::filter(!is.na(description) | description_num == 'description_1') %>%
+    dplyr::group_by(id) %>%
+    dplyr::mutate(
       descriptions = list(description),
-      no_descriptions = is.na(first(description))
+      no_descriptions = is.na(dplyr::first(description))
     ) %>%
-    ungroup() %>%
-    filter(description_num == 'description_1') %>%
-    mutate(
+    dplyr::ungroup() %>%
+    dplyr::filter(description_num == 'description_1') %>%
+    dplyr::mutate(
       timeline = ifelse(
         is.na(start) | start == end,
         end,
-        glue('{end} - {start}')
+        glue::glue('{end} - {start}')
       ),
       description_bullets = ifelse(
         no_descriptions,
         ' ',
-        map_chr(descriptions, ~paste('-', ., collapse = '\n'))
+        purrr::map_chr(descriptions, ~paste('-', ., collapse = '\n'))
       )
     ) %>% {
       x <- .
@@ -69,8 +69,8 @@ print_section.cv_printer <- function(cv, section_id){
       }
       x
     } %>%
-    mutate_all(~ifelse(is.na(.), 'N/A', .)) %>%
-    glue_data(
+    dplyr::mutate_all(~ifelse(is.na(.), 'N/A', .)) %>%
+    glue::glue_data(
       "### {title}",
       "\n\n",
       "{loc}",
