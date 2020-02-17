@@ -22,7 +22,7 @@
 #' printer <- new_cv_printer(data, pdf_mode = TRUE)
 #'
 #' # Print contact info
-#' printer <- print_contact_info(printer)
+#' printer <- printer %>% print_contact_info()
 #'
 new_cv_printer <- function(cv_data, pdf_mode = TRUE){
 
