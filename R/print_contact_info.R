@@ -1,6 +1,13 @@
-
-
-
+#' Print contact info
+#'
+#' Prints out an icon-bulleted list of contact info as supplied in `contact_info` slot of cv data.
+#'
+#' @inheritParams print_skill_bars
+#'
+#' @return
+#' @export
+#'
+#' @examples
 print_contact_info <- function(cv){
   UseMethod("print_contact_info")
 }
