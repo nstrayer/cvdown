@@ -14,6 +14,18 @@
 #' @export
 #'
 #' @examples
+#'
+#' cv_info_loc <- "https://docs.google.com/spreadsheets/d/14MQICF2F8-vf8CKPF1m4lyGKO6_thG-4aSwat1e2TWc"
+#'
+#' # Gather data for CV from googlesheets
+#' data <- gather_data_from_googlesheets(cv_info_loc, public_sheet = TRUE)
+#'
+#' # Setup CV printer
+#' printer <- new_cv_printer(data, pdf_mode = TRUE)
+#'
+#' # Print education section
+#' printer <- printer %>% print_section('education')
+#'
 gather_data_from_googlesheets <- function(positions_sheet_loc = NULL,
                         public_sheet = FALSE){
 
