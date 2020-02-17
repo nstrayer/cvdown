@@ -12,6 +12,16 @@
 #' @export
 #'
 #' @examples
+#'
+#' # Function to get sample csvs from package data store.
+#' sample_data <- function(name) system.file(paste0('sample_csvs/', name), package = "cvdown")
+#'
+#' # Run function on these sample datasets
+#' gather_data_from_csvs(positions_loc = sample_data('positions.csv'),
+#'                       skills_loc = sample_data('language_skills.csv'),
+#'                       text_blocks_loc = sample_data('text_blocks.csv'),
+#'                       contact_info_loc = sample_data('contact_info.csv'))
+#'
 gather_data_from_csvs <- function(positions_loc = NULL,
                                   skills_loc = NULL,
                                   text_blocks_loc = NULL,
@@ -23,19 +33,19 @@ gather_data_from_csvs <- function(positions_loc = NULL,
   data <- list()
 
   if(has_loc(positions_loc)){
-    data$positions <- read_csv(positions_loc)
+    data$positions <- readr::read_csv(positions_loc)
   }
 
   if(has_loc(skills_loc)){
-    data$skills <- read_csv(skills_loc)
+    data$skills <- readr::read_csv(skills_loc)
   }
 
   if(has_loc(text_blocks_loc)){
-    data$text_blocks <- read_csv(text_blocks_loc)
+    data$text_blocks <- readr::read_csv(text_blocks_loc)
   }
 
   if(has_loc(contact_info_loc)){
-    data$contact_info <- read_csv(contact_info_loc)
+    data$contact_info <- readr::read_csv(contact_info_loc)
   }
 
   data
