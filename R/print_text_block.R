@@ -9,6 +9,22 @@
 #' @export
 #'
 #' @examples
+#' # Function to get sample csvs from package data store.
+#' sample_data <- function(name) system.file(paste0('sample_csvs/', name), package = "cvdown")
+#'
+#' # Run function on these sample datasets
+#' data <- gather_data_from_csvs(positions_loc = sample_data('positions.csv'),
+#'                               skills_loc = sample_data('language_skills.csv'),
+#'                               text_blocks_loc = sample_data('text_blocks.csv'),
+#'                               contact_info_loc = sample_data('contact_info.csv'))
+#'
+#' # Setup CV printer
+#' printer <- new_cv_printer(data, pdf_mode = TRUE)
+#'
+#' # Print a main text block
+#' printer <- print_text_block(printer, 'intro')
+#'
+#'
 print_text_block <- function(cv, label){
   UseMethod("print_text_block")
 }
@@ -22,7 +38,7 @@ print_text_block.cv_printer <- function(cv, label){
   }
 
   # Prints out from text_blocks spreadsheet blocks of text for the intro and asides.
-  block_entry <- filter(cv$text_blocks, loc == label)
+  block_entry <- dplyr::filter(cv$text_blocks, loc == label)
 
   if(length(block_entry) == 0){
     stop(glue::glue("No text block found with label {label}"))
