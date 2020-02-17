@@ -15,4 +15,7 @@ Imports:
     purrr,
     dplyr,
     tidyr,
-    stringr
+    stringr,
+    fs,
+    googlesheets4,
+    readr
