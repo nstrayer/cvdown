@@ -1,5 +1,14 @@
-
+#' Print position section
+#'
+#' @inheritParams print_skill_bars
+#' @param section_id Name of section to be printed as encoded by the column `section` in positions dataframe.
+#'
+#' @return
+#' @export
+#'
+#' @examples
 print_section <- function(cv, section_id){
+
   UseMethod("print_section")
 }
 
@@ -54,7 +63,7 @@ print_section.cv_printer <- function(cv, section_id){
             # Reset the column itself with link stripped text
             x[i, col] <- column_extraction$text
             # Send the extracted links into the links array attribute for CV
-            cv <- cv %>% append_links(column_extraction$links)
+            cv <<- cv %>% append_links(column_extraction$links)
           }
         }
       }
