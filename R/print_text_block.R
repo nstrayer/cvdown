@@ -1,4 +1,14 @@
-
+#' Print text block
+#'
+#' Prints arbitrary block of text from the `text_blocks` section of CV data
+#'
+#' @inheritParams print_skill_bars
+#' @param label value in the `label` column of `text_blocks` dataframe for row that holds text desired.
+#'
+#' @return
+#' @export
+#'
+#' @examples
 print_text_block <- function(cv, label){
   UseMethod("print_text_block")
 }
