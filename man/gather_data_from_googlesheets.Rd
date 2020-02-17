@@ -18,3 +18,17 @@ and saying "anyone with link can view".?}
 Loads all cv data into a single list that is taken by the new_cv_printed
 function and used to generate your data-driven CV!
 }
+\examples{
+
+cv_info_loc <- "https://docs.google.com/spreadsheets/d/14MQICF2F8-vf8CKPF1m4lyGKO6_thG-4aSwat1e2TWc"
+
+# Gather data for CV from googlesheets
+data <- gather_data_from_googlesheets(cv_info_loc, public_sheet = TRUE)
+
+# Setup CV printer
+printer <- new_cv_printer(data, pdf_mode = TRUE)
+
+# Print education section
+printer <- printer \%>\% print_section('education')
+
+}

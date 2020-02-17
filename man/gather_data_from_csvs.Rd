@@ -27,3 +27,15 @@ gather_data_from_csvs(
 Want to go old-school and just use plain CSVs (it _is_ simpler that way)?
 This function loads the desired data into the proper format.
 }
+\examples{
+
+# Function to get sample csvs from package data store.
+sample_data <- function(name) system.file(paste0('sample_csvs/', name), package = "cvdown")
+
+# Run function on these sample datasets
+gather_data_from_csvs(positions_loc = sample_data('positions.csv'),
+                      skills_loc = sample_data('language_skills.csv'),
+                      text_blocks_loc = sample_data('text_blocks.csv'),
+                      contact_info_loc = sample_data('contact_info.csv'))
+
+}

@@ -18,4 +18,5 @@ Imports:
     stringr,
     fs,
     googlesheets4,
-    readr
+    readr,
+    magrittr

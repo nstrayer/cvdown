@@ -17,3 +17,21 @@ print_section(cv, section_id)
 \description{
 Print position section
 }
+\examples{
+
+# Function to get sample csvs from package data store.
+sample_data <- function(name) system.file(paste0('sample_csvs/', name), package = "cvdown")
+
+# Run function on these sample datasets
+data <- gather_data_from_csvs(positions_loc = sample_data('positions.csv'),
+                              skills_loc = sample_data('language_skills.csv'),
+                              text_blocks_loc = sample_data('text_blocks.csv'),
+                              contact_info_loc = sample_data('contact_info.csv'))
+
+# Setup CV printer
+printer <- new_cv_printer(data, pdf_mode = TRUE)
+
+# Print education section
+printer <- print_section(printer, 'education')
+
+}
